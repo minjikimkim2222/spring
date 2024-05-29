@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf - 텍스트 기본</title>
+</head>
+<body>
+    <h1>컨텐츠에 데이터 출력하기</h1>
+    <ul>
+        <li>th:text 사용 <span th:text="${data}"></span></li>
+        <!-- 태그가 항상 있어야 하는 th:text, 태그가 없어도 되는 [[${data}]]-->
+        <li>컨텐츠 안에서 직접 출력하기 = [[${data}]] </li>
+        <!--
+            th:text나 [[...]]가 붙으면, <를 태그의 시작이 아니라, '문자' 자체로 받아들인다.
+                >> 이를, 이스케이프(escape)
+
+            근데, 반대로, 문자가 아니고 '태그 시작'으로 받아들이고 싶으면??
+                >> 이를, Unescape -- 해당 text-unescaped 컨트롤러 보기 !!
+        -->
+    </ul>
+</body>
+</html>

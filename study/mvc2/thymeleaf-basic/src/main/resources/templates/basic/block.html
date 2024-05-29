@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thyemeleaf - block</title>
+</head>
+<body>
+    <th:block th:each="user : ${users}">
+        <!-- th:each를 쓰면서, div 2개씩 탁탁 반복문을 돌리고 싶을 때 ! -->
+        <div>
+            사용자 이름1 <span th:text="${user.username}"></span>
+            사용자 나이1 <span th:text="${user.age}"></span>
+        </div>
+        <div>
+            요약 <span th:text="${user.username} + ' / ' + ${user.age}"></span>
+        </div>
+    </th:block>
+</body>
+</html>

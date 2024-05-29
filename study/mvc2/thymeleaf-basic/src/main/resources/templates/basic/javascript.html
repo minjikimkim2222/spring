@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf - javascript inline</title>
+</head>
+<body>
+    <!-- 자바스크립트 인라인 사용 전 -->
+    <script>
+        // var username = "[[${user.username}]]"; --> 이렇게 해야 var username = "userA"; 로 에러 안남
+        var username = [[${user.username}]]; // var username = userA --> 에러 남.
+        var age = [[${user.age}]];
+
+        //자바스크립트 내추럴 템플릿
+        var username2 = /*[[${user.username}]]*/ "test username";
+
+        //객체
+        var user = [[${user}]]; // user객체의 toString이 호출됨.
+    </script>
+
+    <!-- 자바스크립트 인라인 사용 후, 타임리프에서 자바스크립트 관련된 처리를 훨씬 편리하게! -->
+    <script th:inline="javascript">
+        var username = [[${user.username}]];
+        var age = [[${user.age}]];
+
+        //자바스크립트 내추럴 템플릿
+        var username2 = /*[[${user.username}]]*/ "test username";
+
+        //객체
+        var user = [[${user}]]; /* 객체를 json으로 바꿔줌 ! */
+    </script>
+
+    <!-- 자바스크립트 인라인 each -->
+    <script th:inline="javascript">
+        [# th:each="user, stat : ${users}"]
+        var user[[${stat.count}]] = [[${user}]];
+        [/]
+    </script>
+</body>
+</html>
