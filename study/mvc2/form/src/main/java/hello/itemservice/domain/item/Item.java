@@ -12,6 +12,11 @@ public class Item {
     private Integer price;
     private Integer quantity;
 
+    private Boolean open; // 판매여부
+    private List<String> regions; // 등록지역
+    private ItemType itemType; // 상품타입
+    private String deliveryCode; // 배송방식
+
     public Item() {
     }
 

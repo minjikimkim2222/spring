@@ -18,21 +18,70 @@
         <h2>상품 등록 폼</h2>
     </div>
 
-    <form action="item.html" th:action method="post">
+<!--    th:object로 빈 아이템 객체를 받고, 해당 빈 객체에 th:field로 빈 필드값들을 채워주면 된다.-->
+    <form action="item.html" th:action th:object="${item}" method="post">
         <div>
             <label for="itemName">상품명</label>
-            <input type="text" id="itemName" name="itemName" class="form-control" placeholder="이름을 입력하세요">
+            <input type="text" id="itemName" th:field="*{itemName}" class="form-control" placeholder="이름을 입력하세요">
         </div>
         <div>
             <label for="price">가격</label>
-            <input type="text" id="price" name="price" class="form-control" placeholder="가격을 입력하세요">
+            <input type="text" id="price" th:field="*{price}" class="form-control" placeholder="가격을 입력하세요">
         </div>
         <div>
             <label for="quantity">수량</label>
-            <input type="text" id="quantity" name="quantity" class="form-control" placeholder="수량을 입력하세요">
+            <input type="text" id="quantity" th:field="*{quantity}" class="form-control" placeholder="수량을 입력하세요">
         </div>
 
         <hr class="my-4">
+
+        <!-- 단일 체크박스 -->
+        <div>판매 여부</div>
+        <div>
+            <div class="form-check">
+                <input type="checkbox" id="open" th:field="*{open}" class="form-check-input">
+                <label for="open" class="form-check-label">판매오픈</label>
+            </div>
+        </div>
+
+        <!-- 멀티 체크박스
+            th:each의 ${regions}는 @ModelAttribute("regions")에서 가져온 값들
+            th:field는 form 태그에서 th:object로 빈 객체 item을 모델에서 가져왔다면, 여기에 필드값 채울려고...
+        -->
+        <div>
+            <div>등록 지역</div>
+            <div th:each="region : ${regions}" class="form-check form-check-inline">
+                <input type="checkbox" th:field="${item.regions}" th:value="${region.key}" class="form-check-input">
+                <label th:for="${#ids.prev('regions')}"
+                       th:text="${region.value}" class="form-check-label">서울</label>
+            </div>
+        </div>
+        <!-- 제출하고 나면, /add POST url로 향해서, 그 컨트롤러에서 th:object와 th:field로,
+              빈 모델이었던 item에 여러 값들을 save시킨다.
+              특히, 여기서는 th:field=${item.regions}는 List<String> 형태이기에, 멀티 체크박스임..
+        -->
+
+        <!-- 라디오 버튼 -->
+        <div>
+            <div>상품 종류</div>
+            <div th:each="type : ${itemTypes}" class="form-check form-check-inline">
+                <input type="radio" th:field="${item.itemType}" th:value="${type.name()}" class="form-check-input">
+                <label th:for="${#ids.prev('itemType')}"
+                       th:text="${type.name()}" class="form-check-label"></label>
+            </div>
+        </div>
+
+        <!-- select 박스 -->
+        <div>
+            <div>배송 방식</div>
+            <select th:field="${item.deliveryCode}">
+                <option value="">== 배송 방식 선택 == </option>
+
+                <option th:each="deliveryCode : ${deliveryCodes}"
+                        th:value="${deliveryCode.code}"
+                        th:text="${deliveryCode.displayName}"></option>
+            </select>
+        </div>
 
         <div class="row">
             <div class="col">
