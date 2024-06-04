@@ -3,6 +3,7 @@ package hello.itemservice.web.validation;
 import hello.itemservice.domain.item.Item;
 import hello.itemservice.domain.item.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -16,6 +17,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/validation/v1/items")
 @RequiredArgsConstructor
+@Slf4j
 public class ValidationItemControllerV1 {
 
     private final ItemRepository itemRepository;
@@ -51,7 +53,7 @@ public class ValidationItemControllerV1 {
         // 검증 로직
         if (!StringUtils.hasText(item.getItemName())){
             // 모델 item내에, itemName이 없다면..
-            errors.put("itemName", "상품 이름을 필수입니다.");
+            errors.put("itemName", "상품 이름은 필수입니다.");
         }
 
         if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000){
@@ -75,8 +77,11 @@ public class ValidationItemControllerV1 {
         if (!errors.isEmpty()){
             model.addAttribute("errors", errors);
 
-            return "validation/v1/item";
+            log.info("errors = {}", errors);
+            return "validation/v1/addForm"; // 다시 입력 폼 뷰로 넘어감!!
         }
+
+        // 여기는 검증 성공 로직
 
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
