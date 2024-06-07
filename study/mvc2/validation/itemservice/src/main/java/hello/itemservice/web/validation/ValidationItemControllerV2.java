@@ -217,6 +217,7 @@ public class ValidationItemControllerV2 {
         if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) {
             bindingResult.rejectValue("price", "range", new Object[]{1000, 1000000}, null);
         }
+        // rejectValue 메서드 안에서, MessageCodesResolver 인터페이스를 호출한다 (Test 코드 밑에 있음)
 
         if (item.getQuantity() == null || item.getQuantity() >= 10000) {
             bindingResult.rejectValue("quantity", "max", new Object[]{9999}, null);

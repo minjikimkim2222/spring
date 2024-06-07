@@ -20,35 +20,34 @@
 <div class="container">
 
     <div class="py-5 text-center">
-        <h2 th:text="#{page.addItem}">상품 등록</h2>
+        <h2 th:text="#{page.updateItem}">상품 수정</h2>
     </div>
 
-    <form th:action th:object="${item}" method="post">
+    <form action="item.html" th:action th:object="${item}" method="post">
 
-        <!-- 글로벌 에러 처리 .. 각각 한줄당 하나의 에러메세지 -->
+        <!--- objectError 출력 ; 주의 !! th:object 아래에 있어야, #fields로 찾기 가능!!-->
         <div th:if="${#fields.hasGlobalErrors()}">
             <p class="field-error" th:each="err : ${#fields.globalErrors()}"
-                th:text="${err}">전체 오류 메세지</p>
+               th:text="${err}">전체 오류 메세지</p>
         </div>
 
         <div>
+            <label for="id" th:text="#{label.item.id}">상품 ID</label>
+            <input type="text" id="id" th:field="*{id}" class="form-control" readonly>
+        </div>
+        <div>
             <label for="itemName" th:text="#{label.item.itemName}">상품명</label>
             <input type="text" id="itemName" th:field="*{itemName}"
-                   th:errorclass="field-error" class="form-control"
-                   placeholder="이름을 입력하세요">
+                   th:errorclass="field-error" class="form-control">
 
             <div class="field-error" th:errors="*{itemName}">
                 상품명 오류
             </div>
-            <!--  th:errors로 ""BindingResult에서"" 설정한 에러메세지 (errorcode 바탕으로 생성된 메세지코드의 errors.properties 바탕..)가 보여지고,
-                  th:field는 정상 상태라면 모델 객체 값을, 에러가 발생했다면 FieldError에서 보관한 값으로 값 출력..
-                  th:errorClass는 해당 th:field로 에러가 있다면 지정한 클래스(field-error)를, class에 추가..-->
         </div>
         <div>
             <label for="price" th:text="#{label.item.price}">가격</label>
             <input type="text" id="price" th:field="*{price}"
-                   th:errorclass="field-error" class="form-control"
-                   placeholder="가격을 입력하세요">
+                   th:errorclass="field-error" class="form-control">
 
             <div class="field-error" th:errors="*{price}">
                 가격 오류
@@ -57,8 +56,7 @@
         <div>
             <label for="quantity" th:text="#{label.item.quantity}">수량</label>
             <input type="text" id="quantity" th:field="*{quantity}"
-                   th:errorclass="field-error" class="form-control"
-                   placeholder="수량을 입력하세요">
+                   th:errorclass="field-error" class="form-control">
 
             <div class="field-error" th:errors="*{quantity}">
                 수량 오류
@@ -69,12 +67,12 @@
 
         <div class="row">
             <div class="col">
-                <button class="w-100 btn btn-primary btn-lg" type="submit" th:text="#{button.save}">상품 등록</button>
+                <button class="w-100 btn btn-primary btn-lg" type="submit" th:text="#{button.save}">저장</button>
             </div>
             <div class="col">
                 <button class="w-100 btn btn-secondary btn-lg"
-                        onclick="location.href='items.html'"
-                        th:onclick="|location.href='@{/validation/v2/items}'|"
+                        onclick="location.href='item.html'"
+                        th:onclick="|location.href='@{/validation/v4/items/{itemId}(itemId=${item.id})}'|"
                         type="button" th:text="#{button.cancel}">취소</button>
             </div>
         </div>
