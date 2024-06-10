@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import static hello.login.web.SessionConst.LOGIN_MEMBER;
 
@@ -99,7 +100,7 @@ public class LoginController {
     }
 
     // 로그인/로그아웃 - 직접 만든 세션 말고, 서블릿이 제공해주는 HttpSession 활용
-    @PostMapping("/login")
+    //@PostMapping("/login")
     public String loginV3(@Validated @ModelAttribute(name= "loginForm") LoginForm form,
                           BindingResult bindingResult, HttpServletRequest request){
 
@@ -128,10 +129,40 @@ public class LoginController {
     public String logoutV3(HttpServletRequest request){
         // 세션을 삭제한다.
         HttpSession session = request.getSession(false);
-            // 세션이 있으면 기존 세션 반환, 없으면 null 반환 (false)
+            // 세션이 있으면 기존 세션 반환, ** 없으면 null 반환 ** (false)
         if (session != null){
             session.invalidate(); // 세션 제거
         }
         return "redirect:/";
+    }
+
+    // V4 - Filter 추가 -- 로그인 성공하면, 처음 요청한 URL로 이동하도록 !!
+    @PostMapping("/login")
+    public String loginV4(@Validated @ModelAttribute(name= "loginForm") LoginForm form,
+                          BindingResult bindingResult,
+                          @RequestParam(defaultValue = "/") String redirectURL,
+                          HttpServletRequest request){
+
+        if (bindingResult.hasErrors()){
+            return "login/loginForm";
+        }
+
+        Member loginMember = loginService.login(form.getLoginId(), form.getPassword());
+
+        if (loginMember == null){
+            bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
+            return "login/loginForm";
+        }
+
+        // 로그인 성공 처리
+
+        // 세션이 있으면 있는 세션 반환, 없으면 신규 세션 생성 (디폴트값 true)
+        HttpSession session = request.getSession();
+
+        // 세션에 로그인 회원 정보 보관
+        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+
+        /// ---- 이 부분 업데이트! -- redirectURL 적용
+        return "redirect:" + redirectURL;
     }
 }
