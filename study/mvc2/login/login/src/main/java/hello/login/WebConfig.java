@@ -2,15 +2,19 @@ package hello.login;
 
 import hello.login.web.filter.LogFilter;
 import hello.login.web.filter.LoginCheckFilter;
+import hello.login.web.interceptor.LogInterceptor;
+import hello.login.web.interceptor.LoginCheckInterceptor;
 import jakarta.servlet.Filter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebConfig {
+public class WebConfig implements WebMvcConfigurer {
 
-    @Bean
+    //@Bean
     public FilterRegistrationBean logFilter(){
         FilterRegistrationBean<Filter> filterFilterRegistrationBean =
                 new FilterRegistrationBean<>();
@@ -28,7 +32,7 @@ public class WebConfig {
     }
 
     // 로그인 체크 필터설정 추가 !
-    @Bean
+    //@Bean
     public FilterRegistrationBean loginCheckFilter(){
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
 
@@ -38,4 +42,31 @@ public class WebConfig {
 
         return filterRegistrationBean;
     }
+
+    // 스프링 -- interceptor 설정 추가 !
+        // 1. implements WebMvcConfigurer
+        // 2. addInterceptors 메서드 오버라이드
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LogInterceptor())
+                .order(1)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/css/**", "/*.ico", "/error");
+        // addPathPatterns -- 인터셉터 적용할 URL 패턴
+        // excludePathPatterns -- 인터셉터에서 제외할 패턴 (인증을 거칠 필요가 없는,)
+
+        // 스프링 -- interceptor 추가22 -- 로그인체크
+        registry.addInterceptor(new LoginCheckInterceptor())
+                .order(2)
+                .addPathPatterns("/**")
+                .excludePathPatterns(
+                        "/", "/members/add", "/login", "/logout",
+                        "/css/**", "/*.ico", "/error"
+                );
+        // excludePathPatterns로 LoginCheckFilter에서는 따로 메서드(isLoginCheckPath) 만들어야 했던 걸 훨씬 간단하게!
+    }
+
+
+
 }
