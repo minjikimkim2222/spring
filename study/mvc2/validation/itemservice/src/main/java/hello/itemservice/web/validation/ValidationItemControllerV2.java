@@ -110,7 +110,7 @@ public class ValidationItemControllerV2 {
     // 그래서 타입에러같은 바인딩 실패에도, 사용자의 오류메세지 정상 출력 가능!
     // spring : bindingResult.addError(new FieldError("item", "itemName",
     //                    item.getItemName(), true, null, null, "상품 이름은 필수입니다."));
-    //@PostMapping("/add")
+   // @PostMapping("/add")
     public String addItemV2(@ModelAttribute Item item, BindingResult bindingResult,
                             RedirectAttributes redirectAttributes) {
 
@@ -201,17 +201,17 @@ public class ValidationItemControllerV2 {
         return "redirect:/validation/v2/items/{itemId}";
     }
 
-    // v4 - BindingResult의 rejectValue(), reject()로 코드 단순화 -- p.22 ~
-    //@PostMapping("/add")
+    // v4 - BindingResult의 rejectValue(), reject()로 코드 단순화 -- p.22 ~/
+    @PostMapping("/add")
     public String addItemV4(@ModelAttribute Item item, BindingResult bindingResult,
                             RedirectAttributes redirectAttributes) {
 
         // ValidationUtils 추가해서, 밑 검증로직을 리팩토링할 수도 있다.
-        ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "itemName", "required");
+        //ValidationUtils.rejectIfEmptyOrWhitespace(bindingResult, "itemName", "required");
 
-        //        if (!StringUtils.hasText(item.getItemName())) {
-//            bindingResult.rejectValue("itemName", "required");
-//        }
+        if (!StringUtils.hasText(item.getItemName())) {
+            bindingResult.rejectValue("itemName", "required");
+        }
 
 
         if (item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) {
@@ -266,7 +266,7 @@ public class ValidationItemControllerV2 {
     }
 
     // V6 - Validator에서 WebDataBinder 추가 -- p.34 ~
-    @PostMapping("/add") // @Validated 어노테이션 추가
+    //@PostMapping("/add") // @Validated 어노테이션 추가
     public String addItemV6(@Validated @ModelAttribute Item item, BindingResult bindingResult,
                             RedirectAttributes redirectAttributes) {
 

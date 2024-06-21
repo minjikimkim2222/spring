@@ -16,6 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     //@Bean
     public FilterRegistrationBean logFilter(){
+
         FilterRegistrationBean<Filter> filterFilterRegistrationBean =
                 new FilterRegistrationBean<>();
 
@@ -50,7 +51,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LogInterceptor())
-                .order(1)
+                .order(1) // -- 인터셉터 호출순서 지정
                 .addPathPatterns("/**")
                 .excludePathPatterns("/css/**", "/*.ico", "/error");
         // addPathPatterns -- 인터셉터 적용할 URL 패턴
@@ -66,7 +67,4 @@ public class WebConfig implements WebMvcConfigurer {
                 );
         // excludePathPatterns로 LoginCheckFilter에서는 따로 메서드(isLoginCheckPath) 만들어야 했던 걸 훨씬 간단하게!
     }
-
-
-
 }

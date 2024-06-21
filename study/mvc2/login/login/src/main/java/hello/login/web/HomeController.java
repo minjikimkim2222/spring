@@ -2,7 +2,6 @@ package hello.login.web;
 
 import hello.login.domain.member.Member;
 import hello.login.domain.member.MemberRepository;
-import hello.login.web.argumentresolver.Login;
 import hello.login.web.session.SessionManager;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -30,21 +29,22 @@ public class HomeController {
 
     // 로그인한 사용자 Id를 Cookie를 이용해서 보여줌
         // required=false값을 줘서, 로그인 안한 사용자도 들어올 수 있게끔 했다.
-   // @GetMapping("/")
+    //@GetMapping("/")
     public String homeLogin(@CookieValue(name = "memberId", required = false) Long memberId,
                             Model model){
 
         if (memberId == null){
-            return "home";
+            return "home"; // 로그인 쿠키가 없는 사용자는 기존 home으로 보낸다.
         }
 
         // 로그인한 유저가 있는지 체크
         Member loginMember = memberRepository.findById(memberId);
 
         if (loginMember == null){
-            return "home";
+            return "home"; // 로그인한 유저가 없어도 홈으로 보냄.
         }
 
+        // 로그인 쿠키 있으면, 모델 member를 담아, loginHome 뷰로 보낸다.
         model.addAttribute("member", loginMember);
         return "loginHome";
     }

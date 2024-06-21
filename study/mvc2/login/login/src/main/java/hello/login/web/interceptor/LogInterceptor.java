@@ -16,7 +16,8 @@ public class LogInterceptor implements HandlerInterceptor {
 
     // preHandle -- 컨트롤러 호출 이전 (핸들러 어댑터 호출 이전)
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+                             Object handler) throws Exception {
         String requestURI = request.getRequestURI();
         String uuid = UUID.randomUUID().toString();
 
