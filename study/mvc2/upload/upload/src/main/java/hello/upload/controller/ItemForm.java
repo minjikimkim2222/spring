@@ -16,8 +16,8 @@ import java.util.List;
 public class ItemForm {
     private Long itemId;
     private String itemName;
+    private MultipartFile attachFile; // -- 첨부파일용
     private List<MultipartFile> imageFiles; // -- 이미지 다중 업로드하기 위해, MultipartFile을 사용했다 !!
-    private MultipartFile attachFile;
 
     // 참고로, MultipartFile은 @ModelAttribute에서 사용할 수 있다 !!
 }

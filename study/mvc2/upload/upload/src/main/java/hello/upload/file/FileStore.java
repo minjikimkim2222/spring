@@ -12,11 +12,14 @@ import java.util.List;
 import java.util.UUID;
 
 /*
-    멀티파트파일을, '서버'에 저장하는 역할
+    멀티파트파일'자체'를, '서버'에 저장하는 역할
     - storeFile : 첨부파일 '한개' 저장
-    - storeFiles : 첨부파일 '여러개' 저장 - ex) 이미지
+    - storeFiles : 첨부파일 '여러개' 저장 - ex) 이미지파일들
     - createStoreFileName : 서버내부에서 관리하는 파일명은 유일한 이름이어야 한다. -- UUID 사용
     - extractExt : 확장자 별도 추출
+
+    파일'자체' 저장 -> AWS의 S3 같은 곳..
+    파일'경로' / 부수정보 저장 -> 데이터베이스
  */
 @Component
 public class FileStore {

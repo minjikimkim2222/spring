@@ -1,2 +1,4 @@
-package hello.exception.api;public class ApiExceptionController {
+package hello.exception.api;
+
+public class ApiExceptionController {
 }
