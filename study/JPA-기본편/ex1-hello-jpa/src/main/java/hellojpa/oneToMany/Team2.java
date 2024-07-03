@@ -15,7 +15,7 @@ public class Team2 {
 
 
     @OneToMany
-    @JoinColumn(name = "TEAM_ID") // 여기에 조인칼럼
+    @JoinColumn(name = "TEAM_ID") // 연관관계의 주인 -- 외래키를 '일'쪽에서 관리..
     private List<Member2> members = new ArrayList<>();
 
     public Long getId() {

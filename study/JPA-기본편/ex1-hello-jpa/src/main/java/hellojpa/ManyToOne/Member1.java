@@ -12,7 +12,7 @@ public class Member1 {
 
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
-    private Team team;
+    private Team1 team;
     // getters and setters
 
     public Long getId() {

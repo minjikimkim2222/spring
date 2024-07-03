@@ -1,8 +1,6 @@
-package hellojpa;
+package hellojpa.ManyToOne;
 
 import jakarta.persistence.*;
-
-import java.util.List;
 
 public class JpaMain {
 
@@ -18,11 +16,11 @@ public class JpaMain {
         // code
         try {
             // 저장
-            Member member = new Member();
+            Member1 member = new Member1();
             member.setUsername("member1");
             em.persist(member);
 
-            Team team = new Team();
+            Team1 team = new Team1();
             team.setName("teamA");
             //-- 가짜 매핑
            // team.getMembers().add(member); // -- 주인이 아닌 연관관계ㅔ서 값 집어넣음

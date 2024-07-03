@@ -1,4 +1,4 @@
-package hellojpa.ManyToMany.origin;
+package hellojpa.ManyToMany.advance;
 
 
 import jakarta.persistence.EntityManager;
@@ -6,7 +6,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
-public class JpaMain4 {
+public class JpaMain5 {
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory =
                 Persistence.createEntityManagerFactory("hello2");
@@ -19,13 +19,13 @@ public class JpaMain4 {
         // code
         try {
             // 저장
-            Member4 member4 = new Member4();
+            Member5 member5 = new Member5();
 
-            em.persist(member4);
+            em.persist(member5);
 
-            Product1 product1 = new Product1();
+            Product2 product2 = new Product2();
 
-            em.persist(product1);
+            em.persist(product2);
 
             // entityManager 에 추가한 다음 커밋 !! (정상적일때)
             tx.commit();

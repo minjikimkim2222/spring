@@ -1,6 +1,6 @@
 package hellojpa.oneToMany;
 
-import hellojpa.ManyToOne.Team;
+
 import jakarta.persistence.*;
 
 @Entity
