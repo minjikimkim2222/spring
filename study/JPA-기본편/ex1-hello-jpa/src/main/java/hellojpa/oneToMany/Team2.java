@@ -1,19 +1,22 @@
-package hellojpa;
+package hellojpa.oneToMany;
+
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Team {
+public class Team2 {
     @Id
     @GeneratedValue
     @Column(name = "TEAM_ID")
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "team")
-    private List<Member> members = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name = "TEAM_ID") // 여기에 조인칼럼
+    private List<Member2> members = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -31,13 +34,11 @@ public class Team {
         this.name = name;
     }
 
-    public List<Member> getMembers() {
+    public List<Member2> getMembers() {
         return members;
     }
 
-    public void setMembers(List<Member> members) {
+    public void setMembers(List<Member2> members) {
         this.members = members;
     }
-
-
 }

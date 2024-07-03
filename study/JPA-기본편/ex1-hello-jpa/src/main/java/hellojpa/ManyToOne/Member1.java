@@ -1,9 +1,9 @@
-package hellojpa;
+package hellojpa.ManyToOne;
 
 import jakarta.persistence.*;
 
 @Entity
-public class Member {
+public class Member1 {
     @Id
     @GeneratedValue
     @Column(name = "MEMBER_ID")
@@ -31,11 +31,11 @@ public class Member {
         this.username = username;
     }
 
-    public Team getTeam() {
+    public Team1 getTeam() {
         return team;
     }
 
-    public void changeTeam(Team team) {
+    public void changeTeam(Team1 team) {
         this.team = team;
 
         // ! 연관관계 편의 메서드 !
