@@ -2,8 +2,13 @@ package jpabook.jpashop.domain;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-public class Item {
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn
+public abstract class Item extends BaseEntity{ // -- 부모클래스인 Item만 단독으로 저장할 경우가 없어서 추상클래스
 
     @Id @GeneratedValue
     @Column(name = "ITEM_ID")
@@ -14,6 +19,10 @@ public class Item {
     private int price;
 
     private int stockQuantity;
+
+    // Category와 다대다
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
 
     // getters and setters
 

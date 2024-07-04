@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ORDERS")
-public class Order {
+public class Order extends BaseEntity{
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
     private Long id;
@@ -16,6 +16,10 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID") // 연관관계 주인 -- DB 테이블의 외래키와 동일!
+    private Delivery delivery;
 
     private LocalDate orderDate;
 

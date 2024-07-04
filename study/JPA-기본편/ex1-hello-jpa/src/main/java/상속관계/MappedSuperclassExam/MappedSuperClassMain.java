@@ -1,9 +1,14 @@
-package hellojpa.ManyToOne;
+package 상속관계.MappedSuperclassExam;
 
-import jakarta.persistence.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import 상속관계.단일테이블.Movie2;
 
-public class JpaMain {
+import java.time.LocalDateTime;
 
+public class MappedSuperClassMain {
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory =
                 Persistence.createEntityManagerFactory("hello2");
@@ -15,25 +20,14 @@ public class JpaMain {
         tx.begin();
         // code
         try {
-            // 저장
-            Member1 member = new Member1();
-            member.setUsername("member1");
-            em.persist(member);
-
-            Team1 team = new Team1();
-            team.setName("teamA");
-            //-- 가짜 매핑
-           // team.getMembers().add(member); // -- 주인이 아닌 연관관계ㅔ서 값 집어넣음
-            member.changeTeam(team);
-
-            em.persist(team);
-
-            em.flush();
-            em.clear();
+            MemberMapped member = new MemberMapped();
+            member.setUsername("minji");
+            member.setCreatedBy("kim");
+            member.setCreatedDate(LocalDateTime.now());
 
             // entityManager 에 추가한 다음 커밋 !! (정상적일때)
             tx.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             // 문제가 있으면, rollback
             tx.rollback();
         } finally {
