@@ -101,4 +101,12 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    // fetch join -- order repository --> 쿼리문 -- '연관된' 엔디티나 컬렉션을, join fetch 시켜서, 한방쿼리로 조회가능 !!
+    public List<Order> findAllWithMemberDelivery(){
+        return em.createQuery(
+            "select o from Order o"+
+            " join fetch o.member m" +
+            " join fetch o.delivery d"
+        , Order.class).getResultList();
+    }
 }

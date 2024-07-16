@@ -69,6 +69,7 @@ public class MemberApiController {
 
     /*
         수정 API -- name만 바꾸는 수정 api
+        --> 역시나 변경감지로 처리 !
      */
     @PatchMapping("/api/v2/members/{id}")
     public UpdateMemberResponse updateMemberV2(@PathVariable("id") Long id,
@@ -131,6 +132,7 @@ public class MemberApiController {
     @Data
     @AllArgsConstructor
     static class Result<T> { // 템플릿으로 만듭니다.
+        // private int count; -- Result로 한번 더 감싸서 내보내기에, 코드 유연성 증가 !!!
         private T data;
     }
 
