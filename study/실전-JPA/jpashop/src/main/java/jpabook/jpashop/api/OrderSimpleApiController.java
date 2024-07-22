@@ -124,7 +124,7 @@ public class OrderSimpleApiController {
 
     /*
         V4 :: JPA에서 DTO로 바로 조회
-            - 쿼리 1번 호출 (fetch join)
+            - 쿼리 1번 호출 (join)
             - select 절에서 원하는 데이터만 선택해서 조회 (new!)
                 -> 아예 repository가 엔디티가 아닌, DTO를 fetch join시켜서, 반환하게끔!
      */
