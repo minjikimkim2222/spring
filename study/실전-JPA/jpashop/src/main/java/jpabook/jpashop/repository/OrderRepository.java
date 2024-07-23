@@ -109,4 +109,40 @@ public class OrderRepository {
             " join fetch o.delivery d"
         , Order.class).getResultList();
     }
+
+    // 컬렉션 조회를 위한, fetch join
+    /*
+        distinct를 사용한 이유
+            - 일대다 조인이 있으므로, 데이터베이스 row가 증가한다. 그결과, 같은 order 엔디티의 조회 수도 증가하게 된다.
+              jpa의 distinct는 SQL에 distinct를 추가해, 조인해서 같은 엔디티(id로 식별)가 조회되면,
+              어플리케이션에서 중복을 제거해준다.
+
+            - db(sql)에서는, 칼럼 row가 완전히 똑같아야 중복제거해줘서, 여전히 2개가 아닌 4개의 결과값을 보여주지만,
+              jpa에서는, from절의 Order의 id가 같으면, 중복을 제거해준다!
+     */
+    public List<Order> findAllWithItem() {
+        return em.createQuery(
+                "select distinct o from Order o " +
+                    "join fetch o.member m " +
+                    "join fetch o.delivery d " +
+                    "join fetch o.orderItems oi " +
+                    "join fetch oi.item i", Order.class
+        ).getResultList();
+    }
+
+    // V3.1 -- 컬렉션 조회 최적화 -- 페이징 쿼리 추가 !!
+    // 0. ToOne 관계는, fetch join으로 최적화 (데이터뻥튀기가 안되서, 페이징 처리에 아무런 문제 X)
+    // 1. 컬렉션은 지연로딩으로 조회 (컬렉션 조회 X)
+    // 2. @BatchSize로 적용
+    public List<Order> findAllWithMemberDelivery(int offset, int limit){
+        return em.createQuery(
+                "select o from Order o"+
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d"
+                , Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+        // ToOne 관계는 패치조인과 페이징 처리를 해도, 아무런 문제가 없다 !!
+    }
 }

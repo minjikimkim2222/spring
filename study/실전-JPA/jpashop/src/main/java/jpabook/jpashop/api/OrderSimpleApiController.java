@@ -1,7 +1,8 @@
 package jpabook.jpashop.api;
 
-import jpabook.jpashop.api.simplequery.OrderSimpleQueryDto;
-import jpabook.jpashop.api.simplequery.OrderSimpleQueryRepository;
+import jpabook.jpashop.repository.order.query.OrderQueryRepository;
+import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryDto;
+import jpabook.jpashop.repository.order.simplequery.OrderSimpleQueryRepository;
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderSearch;
