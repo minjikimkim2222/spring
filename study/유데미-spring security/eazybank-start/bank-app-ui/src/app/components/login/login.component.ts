@@ -33,6 +33,10 @@ export class LoginComponent implements OnInit {
         let xsrf = getCookie('XSRF-TOKEN')!;
         window.sessionStorage.setItem("XSRF-TOKEN", xsrf);
 
+        // 백엔드로부터 Authorization 헤더값을 읽어와서 + sessionStorage에 적용
+        window.sessionStorage.setItem("Authorization", 
+              responseData.headers.get('Authorization')!);
+
         this.model.authStatus = 'AUTH';
         window.sessionStorage.setItem("userdetails",JSON.stringify(this.model));
         this.router.navigate(['dashboard']);

@@ -4,7 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c04a71fb-3ae4-4903-abc6-51293198b9ac" name="Changes" comment="" />
+    <list default="true" id="c04a71fb-3ae4-4903-abc6-51293198b9ac" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/MinjiBankBackendApplication9.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/config/MinjiBankUsernamePasswordAuthenticationProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/config/ProjectSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/constants/ApplicationConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/controller/AccountController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/controller/BalanceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/controller/CardsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/controller/ContactController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/controller/LoansController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/controller/NoticesController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/filter/CsrfCookieFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/filter/JWTTokenGeneratorFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/filter/JWTTokenValidatorFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/model/AccountTransactions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/model/Accounts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/model/Cards.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/model/Contact.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/model/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/model/Loans.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/model/Notice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/repository/AccountTransactionsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/repository/AccountsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/repository/CardsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/repository/ContactRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/repository/CustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/repository/LoanRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section9/repository/NoticeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../유데미-spring security/eazybank-start/bank-app-ui/src/app/components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../유데미-spring security/eazybank-start/bank-app-ui/src/app/components/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../유데미-spring security/eazybank-start/bank-app-ui/src/app/interceptors/app.request.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../유데미-spring security/eazybank-start/bank-app-ui/src/app/interceptors/app.request.interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section6/config/ProjectSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../유데미-spring security/springsecuritybasic/src/main/java/com/minjiki2/section6/config/ProjectSecurityConfig.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,9 +51,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2ilNmAGBEo818u8L4gPKrEIoa3I" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
@@ -26,6 +61,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JavaScript Debug.upload-form.html.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
@@ -38,6 +74,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-9b16c6e2" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -47,6 +90,8 @@
       <option name="presentableId" value="Default" />
       <updated>1720061359877</updated>
       <workItem from="1720061361305" duration="2761000" />
+      <workItem from="1723015833104" duration="637000" />
+      <workItem from="1723075367108" duration="5642000" />
     </task>
     <servers />
   </component>

@@ -17,6 +17,13 @@ export class XhrInterceptor implements HttpInterceptor {
     }
     if(this.user && this.user.password && this.user.email){
       httpHeaders = httpHeaders.append('Authorization', 'Basic ' + window.btoa(this.user.email + ':' + this.user.password));
+    } else {
+      // JWT 토큰 관련 인터셉터 추가
+      let authorization = sessionStorage.getItem('Authorization');
+
+      if (authorization) {
+        httpHeaders = httpHeaders.append('Authorization', authorization);
+      }
     }
 
     // 추가
