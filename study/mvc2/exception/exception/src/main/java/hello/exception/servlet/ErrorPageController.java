@@ -40,7 +40,7 @@ public class ErrorPageController {
     }
 
     // produces = MediaType.APPLICATION_JSON_VALUE를 설정했음.
-    // 이는, 클라이언트가 받아들이는, Accept 타입이 application/json인 경우,
+    // 이는, 클라이언트가 요청하는 HTTP Header의 Accept 값이 application/json인 경우, 해당 메서드 호출 !!
     // 같은 url을 다루는 둘중, JSON인 이 메서드가 우선순위가 높음!!
     @RequestMapping(value = "/error-page/500", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Object>> errorPage500api(HttpServletRequest request,
@@ -49,11 +49,15 @@ public class ErrorPageController {
 
        // 응답데이터를 위해서 Map을 만들고, status, message 키를 할당함
        Map<String, Object> result = new HashMap<>();
+        // -- 예외를 뽑고,
         Exception ex = (Exception) request.getAttribute(ERROR_EXCEPTION);
+
+        // -- HashMap에 status랑 message 값 세팅
         result.put("status", request.getAttribute(ERROR_STATUS_CODE));
         result.put("message", ex.getMessage());
 
         Integer statusCode = (Integer) request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+
         return new ResponseEntity<>(result, HttpStatus.valueOf(statusCode)); // Map(body), 상태코드
     }
 
